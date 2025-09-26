@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roc心理 - 财富人格与“金钱脚本”诊断书</title>
+    <style>
+        :root {
+            --primary: #005B41; /* 深邃祖母绿 */
+            --primary-light: #4E8D7C; /* 雅致灰绿 */
+            --secondary: #C0A062; /* 雅致香槟金 */
+            --accent: #005B41;
+            --light: #FBF9F4; /* 奶油米白 */
+            --dark: #23302B; /* 深松石绿 */
+            --gray: #a9a9a9;
+            --success: #4E8D7C;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--light) 0%, #f6f4ef 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .page {
+            padding: 40px;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            min-height: 600px;
+        }
+        
+        .page.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        h1, h2, h3 {
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            border-left: 5px solid var(--primary);
+            padding-left: 15px;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-top: 25px;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #555;
+        }
+        
+        .btn {
+            display: inline-block;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .btn.btn-primary {
+             background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+             color: white;
+             box-shadow: 0 5px 15px rgba(0, 91, 65, 0.3);
+        }
+        .btn.btn-primary:hover {
+             box-shadow: 0 8px 20px rgba(0, 91, 65, 0.4);
+        }
+        
+        .btn.btn-secondary {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            box-shadow: inset 2px 2px 5px #d1d9e6, inset -2px -2px 5px #ffffff;
+            color: var(--dark);
+        }
+        
+        .btn.btn-secondary:hover {
+             box-shadow: inset 3px 3px 7px #c8d0e7, inset -3px -3px 7px #ffffff;
+        }
+        
+        .btn-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        #welcome-page {
+            text-align: center;
+            padding-top: 60px;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin: 30px 0;
+        }
+        
+        .feature-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f2f6;
+            position: relative;
+            padding-left: 40px;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 15px;
+            width: 25px;
+            height: 25px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e4e9f2;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+        
+        input:focus, select:focus {
+            border-color: var(--primary-light);
+            outline: none;
+        }
+        
+        .question-container {
+            margin-bottom: 30px;
+        }
+        
+        .question-number {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 5px;
+        }
+        
+        .question-text {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .option {
+            padding: 15px;
+            border: 2px solid #e4e9f2;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            border-color: #a5b1c2;
+            background-color: #f8f9fa;
+        }
+        
+        .option.selected {
+            border-color: var(--primary);
+            background-color: #f7faf9;
+        }
+        
+        .option input {
+            margin-right: 10px;
+            width: auto;
+        }
+        
+        .progress-container {
+            margin: 30px 0;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #e4e9f2;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-light) 0%, var(--primary) 100%);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            text-align: right;
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 5px;
+        }
+        
+        #report-page {
+            padding: 30px;
+        }
+        
+        .report-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e4e9f2;
+        }
+        
+        .user-name {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .archetype {
+            font-size: 2rem;
+            margin: 15px 0;
+            color: var(--dark);
+        }
+        
+        .archetype-desc {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .report-section {
+            margin-bottom: 40px;
+        }
+        
+        .dimension {
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+        
+        .dimension-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .dimension-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .dimension-score {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .dimension-desc {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .action-plan {
+            background: #f7faf9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .radar-container {
+            width: 100%;
+            height: 400px;
+            margin: 20px 0;
+        }
+        
+        .loader {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .loader-spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .disclaimer {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 30px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            .page {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .section-title:before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 25px;
+            background: var(--primary);
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+        
+        .value-prop {
+            background: linear-gradient(135deg, #f7faf9 0%, #fbf9f4 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 5px solid var(--primary);
+        }
+        
+        .testimonial-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary-light);
+            text-align: left;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary);
+            margin-top: 10px;
+            text-align: right;
+        }
+        
+        /* 温暖引导页样式 */
+        #warmup-page {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #fbf9f4 0%, #f6f4ef 100%);
+        }
+        
+        .warmup-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .warmup-icon {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+        
+        .warmup-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 40px;
+            text-align: left;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .warmup-quote {
+            font-style: italic;
+            color: var(--primary);
+            margin: 20px 0;
+            padding-left: 20px;
+            border-left: 3px solid var(--primary-light);
+        }
+        
+        /* 甘特图样式 */
+        .gantt-container {
+            margin: 30px 0;
+        }
+        
+        .gantt-item {
+            margin-bottom: 20px;
+        }
+        
+        .gantt-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .gantt-bar-container {
+            height: 20px;
+            background: #e4e9f2;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .gantt-bar {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+        
+        .gantt-value {
+            position: absolute;
+            right: 10px;
+            top: 0;
+            line-height: 20px;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        /* 增强雷达图样式 */
+        .radar-enhanced {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            margin: 30px 0;
+        }
+        
+        /* 深度内容样式 */
+        .insight-block {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .insight-title {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .insight-title:before {
+            content: "●";
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .action-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 3px solid var(--success);
+        }
+        
+        .scenario {
+            background: linear-gradient(135deg, #f7faf9 0%, #fbf9f4 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .scenario-title {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .insight-block ul {
+            list-style-position: inside;
+            padding-left: 10px;
+        }
+        .insight-block li {
+            margin-bottom: 10px;
+        }
+
+        #closing-remarks .insight-block {
+             border-left-color: var(--secondary);
+             background: linear-gradient(135deg, #fcfaf5 0%, #fdfcf8 100%);
+        }
+         #closing-remarks .insight-title {
+             color: var(--secondary);
+         }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 欢迎页面 -->
+        <div id="welcome-page" class="page active">
+            <div class="logo">Roc心理</div>
+            <h1>财富人格与“金钱脚本”诊断书</h1>
+            <p class="tagline">一份专属于你的财富心理CT与富足潜力激活指南</p>
+            
+            <div class="value-prop">
+                <p>本测评旨在帮你破解财富卡点，激活内在潜力：</p>
+                <ul class="feature-list">
+                    <li>精准诊断你的“财富人格”与核心驱动力</li>
+                    <li>揭示你从原生家庭继承的、潜意识的“金钱脚本”</li>
+                    <li>找到你“存不下钱”或“不敢搞钱”的深层心理障碍</li>
+                    <li>获得重塑“富人思维”、提升财富能量的个性化方案</li>
+                </ul>
+            </div>
+            
+            <div class="testimonial-container">
+                <div class="testimonial">
+                    <p>"报告说我的金钱脚本是‘必须非常努力才能赚钱’，简直说到心坎里！我总是不敢享受，觉得钱赚得太辛苦。现在我正在学习调整心态，允许自己更轻松地富足。"</p>
+                    <div class="testimonial-author">—— 阿文，30岁，自由职业者</div>
+                </div>
+                <div class="testimonial">
+                    <p>"我是‘冲动的享乐主义者’，月光的原因终于找到了！报告里的‘消费冷静期’和‘情绪账户’这两个方法很实用，我已经开始记账，并成功存下了第一个月的钱。"</p>
+                    <div class="testimonial-author">—— Kiki，24岁，市场专员</div>
+                </div>
+                <div class="testimonial">
+                    <p>"我一直觉得谈钱很俗气，报告指出这是‘财富回避’的金钱脚本。这让我意识到，我对金钱的恐惧，让我错过了很多机会。这是一个巨大的警醒。"</p>
+                    <div class="testimonial-author">—— 赵先生，35岁，技术经理</div>
+                </div>
+            </div>
+            
+            <div class="btn-container">
+                <button class="btn btn-primary" onclick="showPage('guide-page')">开启财富探索之旅</button>
+            </div>
+            
+            <div class="disclaimer">
+                <p>【重要提示】本产品是基于心理学的自我探索与成长工具，旨在提供个人发展参考。它不能替代专业的理财建议或心理治疗。</p>
+            </div>
+        </div>
+        
+        <!-- 引导页面 -->
+        <div id="guide-page" class="page">
+            <h2>探索指南</h2>
+            <p>欢迎来到这场名为《财富人格》的自我发现之旅。在开始前，请了解：</p>
+            
+            <div class="value-prop">
+                <ul class="feature-list">
+                    <li>测评包含<strong>66道精心设计的题目</strong>，大约需要<strong>20-25分钟</strong></li>
+                    <li>请确保在<strong>安静、不被打扰的环境</strong>中进行</li>
+                    <li>请根据<strong>第一感觉</strong>作答，这里没有对错，只有你与金钱的真实关系</li>
+                    <li>完成后，你将获得一份<strong>详实的个性化深度档案</strong></li>
+                    <li>档案将揭示你的财富人格、金钱脚本，并提供专属的富足潜力激活方案</li>
+                </ul>
+            </div>
+            
+            <div class="btn-container">
+                <button class="btn btn-secondary" onclick="showPage('welcome-page')">返回</button>
+                <button class="btn btn-primary" onclick="showPage('info-page')">我准备好了</button>
+            </div>
+        </div>
+        
+        <!-- 信息收集页面 -->
+        <div id="info-page" class="page">
+            <h2>让我们更好地了解你的财富状况</h2>
+            <p>这些信息将用于个性化你的报告，让分析更具针对性。</p>
+            
+            <div class="form-group">
+                <label for="user-name">你的昵称</label>
+                <input type="text" id="user-name" placeholder="这将出现在你的专属报告里">
+            </div>
+            
+            <div class="form-group">
+                <label for="user-focus">你当前最想改善的财务方面是？</label>
+                <select id="user-focus">
+                    <option value="">请选择</option>
+                    <option value="saving">总是存不下钱</option>
+                    <option value="earning">想提升赚钱能力</option>
+                    <option value="spending">消费不理性，容易后悔</option>
+                    <option value="mindset">对金钱有莫名的焦虑和恐惧</option>
+                </select>
+            </div>
+            
+            <div class="btn-container">
+                <button class="btn btn-secondary" onclick="showPage('guide-page')">返回</button>
+                <button class="btn btn-primary" onclick="showPage('warmup-page')">继续</button>
+            </div>
+        </div>
+        
+        <!-- 温暖引导页面 -->
+        <div id="warmup-page" class="page">
+            <div class="warmup-content">
+                <div class="warmup-icon">💎</div>
+                <h2>一封来自你“财富潜力”的邀请函</h2>
+                
+                <div class="warmup-text">
+                    <p>亲爱的探索者，</p>
+                    <p>在开始之前，请先与我们一起做一个小小的练习：想象金钱是一个人，你和TA的关系是怎样的？是亲密的朋友，是陌生的访客，还是一个让你感到压力的老板？</p>
+                    <p>我们与金钱的关系，常常是我们与自己、与世界关系的缩影。它承载了我们的恐惧、欲望、价值感和安全感。很多时候，限制我们财富的，不是外部的机会，而是我们内在的、未被看见的“金钱脚本”。</p>
+                    <p class="warmup-quote">"你口袋里有多少钱，取决于你脑子里有多少货；你脑子里有多少货，取决于你对金钱的态度。" —— 佚名</p>
+                    <p>接下来的问题，就是帮助你梳理这些深藏不露的态度的线索。请放下对“应该如何看待金钱”的评判，诚实地面对你最真实的感觉。这里的目的不是评判你的财务状况，而是理解你独特的财富心理。</p>
+                    <p>愿这次探索，能带给你一份看见财务卡点的清晰，和一份开启富足人生的勇气。</p>
+                </div>
+                
+                <div class="btn-container">
+                    <button class="btn btn-secondary" onclick="showPage('info-page')">返回</button>
+                    <button class="btn btn-primary" onclick="startTest()">开始探索</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 测评页面 -->
+        <div id="test-page" class="page">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progress-bar"></div>
+                </div>
+                <div class="progress-text" id="progress-text">问题 1/66</div>
+            </div>
+            
+            <div class="question-container">
+                <div class="question-number" id="question-number">问题 1/66</div>
+                <div class="question-text" id="question-text"></div>
+                
+                <div class="options-container" id="options-container">
+                    <!-- 选项将通过JavaScript动态生成 -->
+                </div>
+            </div>
+            
+            <div class="btn-container">
+                <button class="btn btn-secondary" id="prev-btn" onclick="prevQuestion()" style="display: none;">上一题</button>
+                <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()" style="display: none;">下一题</button>
+            </div>
+        </div>
+        
+        <!-- 加载页面 -->
+        <div id="loading-page" class="page loader">
+            <div class="loader-spinner"></div>
+            <h2>正在为你绘制财富心理CT</h2>
+            <p>系统正在分析你的答案，解码你的金钱脚本...</p>
+            <p>这可能需要几秒钟时间，请耐心等待。</p>
+        </div>
+        
+        <!-- 报告页面 -->
+        <div id="report-page" class="page">
+            <div class="report-header">
+                <h2>你的财富人格与“金钱脚本”诊断书</h2>
+                <p>专属报告 · <span class="user-name" id="report-user-name">探索者</span> · <span id="report-date"></span></p>
+                <div class="archetype" id="archetype-name"></div>
+                <p class="archetype-desc" id="archetype-desc"></p>
+            </div>
+            
+            <div class="report-section">
+                <div class="section-title"><h3>你的财富人格图谱</h3></div>
+                <p>下图展示了构成你财富人格的六大核心心理维度。这些维度共同作用，塑造了你与金钱的独特关系。</p>
+                <div class="radar-enhanced" id="radar-container">
+                    <!-- 增强版雷达图将通过JavaScript动态生成 -->
+                </div>
+            </div>
+            
+            <div class="report-section">
+                <div class="section-title"><h3>核心维度深度剖析</h3></div>
+                <p>以下是你各个维度的详细解读，通过彩色甘特图直观展示其影响力。</p>
+                <div class="gantt-container" id="gantt-container">
+                    <!-- 甘特图将通过JavaScript动态生成 -->
+                </div>
+                <div id="dimensions-analysis">
+                    <!-- 维度深度解析内容将通过JavaScript动态生成 -->
+                </div>
+            </div>
+            
+            <div class="report-section">
+                <div class="section-title"><h3>富足潜力激活方案</h3></div>
+                <p>理解是改变的开始。以下是为你量身定制的、旨在重塑你与金钱关系的行动指南。</p>
+                
+                <div id="application-guide">
+                    <!-- 应用指南内容将通过JavaScript动态生成 -->
+                </div>
+            </div>
+            
+            <!-- 私人定制收尾 -->
+            <div id="closing-remarks" class="report-section">
+                 <!-- 定制收尾内容将通过JavaScript动态生成 -->
+            </div>
+
+            <div class="btn-container">
+                <button class="btn btn-secondary" onclick="showPage('welcome-page')">重新测评</button>
+            </div>
+            
+            <div class="disclaimer">
+                <p>【专业声明】本报告是基于心理学理论的自我探索与成长工具，旨在提供个人发展参考。它不能替代专业的理财建议、财务规划或心理治疗。所有财务决策请咨询专业人士。</p>
+                <p id="copyright-statement">版权所有 © 2025 Roc心理。本产品（包含所有文字、图形、用户界面、视觉界面、题目内容及底层代码）的全部知识产权，均为Roc心理所有。未经书面授权，严禁以任何形式复制、转载、改编、传播或用于任何商业目的。我们将追究其法律责任。</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // 页面导航函数
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0); // 切换页面时滚动到顶部
+            if (pageId === 'test-page') initTest();
+            if (pageId === 'report-page') generateReport();
+        }
+
+        const TOTAL_QUESTIONS = 66;
+        
+        const questions = [
+            // 维度1: 金钱信念 (Money Beliefs) - 11题
+            { text: "我内心深处觉得，追求财富在某种程度上是贪婪或不道德的。", options: ["不太像我", "是的，这很像我"], dimension: "beliefs" },
+            { text: "我相信“钱是万恶之源”或“富人通常都不择手段”。", options: ["不太像我", "是的，这很像我"], dimension: "beliefs" },
+            { text: "我害怕拥有太多钱会给我带来麻烦或改变我。", options: ["不太像我", "是的，这很像我"], dimension: "beliefs" },
+            { text: "我认为金钱是一种有限的资源，别人多赚了，就意味着我能赚的变少了。", options: ["不太像我", "是的，这很像我"], dimension: "beliefs" },
+            { text: "我相信“君子爱财，取之有道”，并认为金钱是实现价值的工具。", options: ["是的，这很像我", "不太像我"], dimension: "beliefs" }, // 反向计分
+            { text: "我很难公开谈论金钱，觉得这是一件很私密甚至有点尴尬的事。", options: ["不太像我", "是的，这很像我"], dimension: "beliefs" },
+            { text: "我认为必须非常辛苦地工作，才能赚到“干净”的钱。", options: ["不太像我", "是的，这很像我"], dimension: "beliefs" },
+            { text: "对于轻松赚到的钱，我内心会有一种不配得感。", options: ["不太像我", "是的，这很像我"], dimension: "beliefs" },
+            { text: "我更看重精神追求，并觉得这与物质财富是冲突的。", options: ["不太像我", "是的，这很像我"], dimension: "beliefs" },
+            { text: "我相信宇宙是富足的，每个人都有机会创造财富。", options: ["是的，这很像我", "不太像我"], dimension: "beliefs" }, // 反向计分
+            { text: "当别人向我借钱时，即使不方便，我也会因为害怕破坏关系而答应。", options: ["不太像我", "是的，这很像我"], dimension: "beliefs" },
+            
+            // 维度2: 消费习惯 (Spending Habits) - 11题
+            { text: "我常常会因为情绪（如开心、沮丧）而进行冲动消费。", options: ["不太像我", "是的，这很像我"], dimension: "spending" },
+            { text: "看到“打折”、“限量”等字眼，我很难控制自己的购买欲。", options: ["不太像我", "是的，这很像我"], dimension: "spending" },
+            { text: "我经常购买一些超出我实际需要或消费能力的东西。", options: ["不太像我", "是的，这很像我"], dimension: "spending" },
+            { text: "花钱之后，我常常会感到后悔或内疚。", options: ["不太像我", "是的，这很像我"], dimension: "spending" },
+            { text: "我对自己很节俭，但为家人或朋友花钱时却很大方。", options: ["不太像我", "是的，这很像我"], dimension: "spending" },
+            { text: "我更倾向于购买能提升自我或带来体验的东西（如课程、旅行），而不是纯粹的物质。", options: ["是的，这很像我", "不太像我"], dimension: "spending" }, // 反向计分
+            { text: "我对自己的财务状况不太清楚，很少记账或做预算。", options: ["不太像我", "是的，这很像我"], dimension: "spending" },
+            { text: "我有时会通过购物来填补内心的空虚或寻求他人的认可。", options: ["不太像我", "是的，这很像我"], dimension: "spending" },
+            { text: "对于大额消费，我会做详细的调查和比较。", options: ["是的，这很像我", "不太像我"], dimension: "spending" }, // 反向计分
+            { text: "我愿意为高品质、耐用的东西支付更高的价格。", options: ["是的，这很像我", "不太像我"], dimension: "spending" }, // 反向计分
+            { text: "月底时，我常常不知道自己的钱都花到哪里去了。", options: ["不太像我", "是的，这很像我"], dimension: "spending" },
+
+            // 维度3: 风险偏好 (Risk Tolerance) - 11题
+            { text: "在投资理财方面，我宁愿选择收益低但绝对安全的产品。", options: ["是的，这很像我", "不太像我"], dimension: "risk" }, // 注意计分方向
+            { text: "“高风险高回报”这句话让我感到兴奋多于恐惧。", options: ["不太像我", "是的，这很像我"], dimension: "risk" },
+            { text: "我害怕做出错误的财务决策，所以干脆把钱都存在银行。", options: ["是的，这很像我", "不太像我"], dimension: "risk" }, // 注意计分方向
+            { text: "我愿意花时间和精力去学习和了解新的投资机会。", options: ["不太像我", "是的，这很像我"], dimension: "risk" },
+            { text: "股市的波动会让我感到非常焦虑，甚至影响睡眠。", options: ["是的，这很像我", "不太像我"], dimension: "risk" }, // 注意计分方向
+            { text: "为了追求更高的潜在收益，我愿意承受本金亏损的可能性。", options: ["不太像我", "是的，这很像我"], dimension: "risk" },
+            { text: "我认为创业或投资自己是一件风险很大的事。", options: ["是的，这很像我", "不太像我"], dimension: "risk" }, // 注意计分方向
+            { text: "我更倾向于跟随专家的建议，而不是自己做投资决策。", options: ["是的，这很像我", "不太像我"], dimension: "risk" }, // 注意计分方向
+            { text: "我享受在不确定性中寻找机会的感觉。", options: ["不太像我", "是的，这很像我"], dimension: "risk" },
+            { text: "我因为害怕错过机会而做出过冲动的投资。", options: ["不太像我", "是的，这很像我"], dimension: "risk" },
+            { text: "我认为最大的风险是“一成不变”。", options: ["不太像我", "是的，这很像我"], dimension: "risk" },
+
+            // 维度4: 储蓄与规划 (Saving & Planning) - 11题
+            { text: "我每个月都有固定的储蓄计划，并且能坚持执行。", options: ["是的，这很像我", "不太像我"], dimension: "planning" }, // 反向计分
+            { text: "我常常是“月光族”，钱到月底就不够用了。", options: ["不太像我", "是的，这很像我"], dimension: "planning" },
+            { text: "我对未来（如养老、子女教育）有清晰的财务规划。", options: ["是的，这很像我", "不太像我"], dimension: "planning" }, // 反向计分
+            { text: "我更喜欢活在当下，觉得为遥远的未来储蓄会降低现在的生活品质。", options: ["不太像我", "是的，这很像我"], dimension: "planning" },
+            { text: "我拥有一个应急备用金账户，以备不时之需。", options: ["是的，这很像我", "不太像我"], dimension: "planning" }, // 反向计分
+            { text: "我倾向于先消费，剩下的钱再储蓄。", options: ["不太像我", "是的，这很像我"], dimension: "planning" },
+            { text: "想到要做财务规划就觉得很复杂、很头疼。", options: ["不太像我", "是的，这很像我"], dimension: "planning" },
+            { text: "我相信复利的力量，并愿意为此进行长期储蓄和投资。", options: ["是的，这很像我", "不太像我"], dimension: "planning" }, // 反向计分
+            { text: "我常常会为了满足短期的欲望而动用本该储蓄的钱。", options: ["不太像我", "是的，这很像我"], dimension: "planning" },
+            { text: "我会定期回顾和调整自己的财务目标。", options: ["是的，这很像我", "不太像我"], dimension: "planning" }, // 反向计分
+            { text: "我觉得未来的事太遥远，现在考虑也白搭。", options: ["不太像我", "是的，这很像我"], dimension: "planning" },
+
+            // 维度5: 赚钱动力 (Earning Drive) - 11题
+            { text: "对我来说，赚钱最重要的目的是为了获得安全感。", options: ["是的，这很像我", "不太像我"], dimension: "drive" },
+            { text: "我渴望赚取更多金钱，以获得更多的自由和选择权。", options: ["是的，这很像我", "不太像我"], dimension: "drive" },
+            { text: "财富对我来说是社会地位和成功的象征。", options: ["是的，这很像我", "不太像我"], dimension: "drive" },
+            { text: "我赚钱是为了能给家人提供更好的生活。", options: ["是的，这很像我", "不太像我"], dimension: "drive" },
+            { text: "我对目前稳定的收入感到满足，没有太强的动力去追求更多。", options: ["是的，这很像我", "不太像我"], dimension: "drive" },
+            { text: "我会主动寻找和创造新的收入来源，比如副业或投资。", options: ["是的，这很像我", "不太像我"], dimension: "drive" },
+            { text: "我更愿意选择一份薪水不高但我热爱的工作，而不是一份高薪但我不喜欢的工作。", options: ["是的，这很像我", "不太像我"], dimension: "drive" },
+            { text: "我常常和别人比较收入，并因此感到焦虑。", options: ["是的，这很像我", "不太像我"], dimension: "drive" },
+            { text: "我希望通过赚钱来证明自己的能力和价值。", options: ["是的，这很像我", "不太像我"], dimension: "drive" },
+            { text: "我愿意为了更高的收入而承担更多的工作压力和责任。", options: ["是的，这很像我", "不太像我"], dimension: "drive" },
+            { text: "赚钱的最终目的是为了能够回馈社会或帮助他人。", options: ["是的，这很像我", "不太像我"], dimension: "drive" },
+
+            // 维度6: 财富与自我价值 (Wealth & Self-Worth) - 11题
+            { text: "当我的财务状况不佳时，我会觉得自己很失败。", options: ["不太像我", "是的，这很像我"], dimension: "selfworth" },
+            { text: "我认为一个人的财富水平在很大程度上代表了他的能力。", options: ["不太像我", "是的，这很像我"], dimension: "selfworth" },
+            { text: "我很难向别人开口要求应得的报酬或涨薪。", options: ["不太像我", "是的，这很像我"], dimension: "selfworth" },
+            { text: "我会因为觉得自己“不配”拥有更多财富而下意识地搞砸一些机会。", options: ["不太像我", "是的，这很像我"], dimension: "selfworth" },
+            { text: "我的自我价值感不取决于我银行账户的数字。", options: ["是的，这很像我", "不太像我"], dimension: "selfworth" }, // 反向计分
+            { text: "我需要通过购买昂贵的物品来让自己感觉更好。", options: ["不太像我", "是的，这很像我"], dimension: "selfworth" },
+            { text: "当别人比我富有时，我会感到嫉妒或自卑。", options: ["不太像我", "是的，这很像我"], dimension: "selfworth" },
+            { text: "我敢于为我的服务和产品设定一个合理甚至较高的价格。", options: ["是的，这很像我", "不太像我"], dimension: "selfworth" }, // 反向计分
+            { text: "我常常觉得“像我这样的人”不可能变得非常富有。", options: ["不太像我", "是的，这很像我"], dimension: "selfworth" },
+            { text: "我认为自己的价值体现在我的品格、知识和贡献上，而不仅仅是财富。", options: ["是的，这很像我", "不太像我"], dimension: "selfworth" }, // 反向计分
+            { text: "我收到一份昂贵的礼物时，会感到不安和压力。", options: ["不太像我", "是的，这很像我"], dimension: "selfworth" }
+        ];
+
+        let currentQuestion = 0;
+        let userAnswers = new Array(TOTAL_QUESTIONS);
+        
+        function initTest() {
+            currentQuestion = 0;
+            userAnswers.fill(undefined);
+            displayQuestion();
+        }
+        
+        function displayQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById('question-text').textContent = question.text;
+            document.getElementById('question-number').textContent = `问题 ${currentQuestion + 1}/${TOTAL_QUESTIONS}`;
+            document.getElementById('progress-text').textContent = `问题 ${currentQuestion + 1}/${TOTAL_QUESTIONS}`;
+            
+            const progress = ((currentQuestion) / TOTAL_QUESTIONS) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            const savedAnswer = userAnswers[currentQuestion];
+
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                if (savedAnswer === index) {
+                    optionElement.classList.add('selected');
+                }
+                optionElement.innerHTML = `<input type="radio" name="answer" id="option-${index}" value="${index}" ${savedAnswer === index ? 'checked' : ''}><label for="option-${index}">${option}</label>`;
+                
+                optionElement.addEventListener('click', function() {
+                    document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    this.querySelector('input').checked = true;
+                    userAnswers[currentQuestion] = index;
+                    document.getElementById('next-btn').style.display = 'inline-block';
+                });
+                
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            document.getElementById('next-btn').style.display = (savedAnswer !== undefined) ? 'inline-block' : 'none';
+            document.getElementById('prev-btn').style.display = (currentQuestion > 0) ? 'inline-block' : 'none';
+        }
+        
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                displayQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (userAnswers[currentQuestion] === undefined) {
+                alert('请选择一个答案');
+                return;
+            }
+            
+            if (currentQuestion < TOTAL_QUESTIONS - 1) {
+                currentQuestion++;
+                displayQuestion();
+            } else {
+                showPage('loading-page');
+                setTimeout(() => {
+                    showPage('report-page');
+                }, 3000);
+            }
+        }
+        
+        function startTest() {
+            const userName = document.getElementById('user-name').value;
+            const userFocus = document.getElementById('user-focus').value;
+            if (!userName.trim()) { alert('请输入你的昵称'); return; }
+            if (!userFocus) { alert('请选择你想改善的财务方面'); return; }
+            showPage('test-page');
+        }
+        
+        function generateReport() {
+            const userName = document.getElementById('user-name').value || '探索者';
+            document.getElementById('report-user-name').textContent = userName;
+            document.getElementById('report-date').textContent = new Date().toLocaleDateString();
+            
+            const dimensionScores = {
+                beliefs: { score: 0, total: 11, name: "金钱信念", color: "#005B41" },
+                spending: { score: 0, total: 11, name: "消费习惯", color: "#4E8D7C" },
+                risk: { score: 0, total: 11, name: "风险偏好", color: "#C0A062" },
+                planning: { score: 0, total: 11, name: "储蓄与规划", color: "#E8C88A" },
+                drive: { score: 0, total: 11, name: "赚钱动力", color: "#7BA05B" },
+                selfworth: { score: 0, total: 11, name: "财富与自我价值", color: "#D9534F" }
+            };
+            
+            questions.forEach((question, index) => {
+                const answer = userAnswers[index];
+                if (answer !== undefined) {
+                   // 反向计分问题特殊处理
+                   if ([4, 9, 21, 23, 24, 25, 27, 29, 31, 32, 49, 52].includes(index)) {
+                       dimensionScores[question.dimension].score += (1 - answer);
+                   } else if (index === 19 || index === 20 || index === 22) { // 风险偏好维度中，高分代表保守，需要反转
+                       dimensionScores[question.dimension].score += (1 - answer);
+                   } else {
+                       dimensionScores[question.dimension].score += answer;
+                   }
+                }
+            });
+
+            // Determine Archetype
+            let maxScore = -1;
+            let primaryDimension = '';
+            for (const dim in dimensionScores) {
+                // 'risk' is special, high score means risk-averse, low score means risk-seeking. We should find the most extreme score.
+                 let effectiveScore = dimensionScores[dim].score;
+                 if (dim === 'risk') {
+                     // An extreme score in risk is either very high or very low. Let's find the distance from the middle.
+                     effectiveScore = Math.abs(dimensionScores[dim].score - dimensionScores[dim].total / 2);
+                 }
+                if (effectiveScore > maxScore) {
+                    maxScore = effectiveScore;
+                    primaryDimension = dim;
+                }
+            }
+            
+            const archetypes = {
+                beliefs: { name: "财富的“哲学家”", desc: "你与金钱的关系，深受一套内在的、根深蒂固的信念体系所影响。这些信念决定了你看待财富的角度，也塑造了你的财务行为。你的首要课题是审视并重塑这些信念。" },
+                spending: { name: "精明的“生活鉴赏家”", desc: "你将金钱视为体验和创造美好生活的工具。你的消费行为是你价值观和情感状态的直接体现。如何让每一次消费都更符合你的长期目标，是你财富增长的关键。" },
+                risk: (dimensionScores.risk.score > 5) ? 
+                    { name: "稳健的“财富守护者”", desc: "安全感是你财务决策的核心基石。你厌恶风险，倾向于用最稳妥的方式来守护自己的劳动成果。你的挑战在于，如何在守护的同时，不错过资产增值的机会。" } : 
+                    { name: "勇敢的“机遇捕手”", desc: "你拥有敏锐的商业嗅觉和强大的风险承受能力，善于在不确定性中发现机遇。你的财富之路充满了可能性，但关键在于如何平衡机遇与风险，避免冲动决策。" },
+                planning: { name: "未来的“总建筑师”", desc: "你拥有强烈的未来导向思维，擅长为自己的财富大厦绘制蓝图。储蓄和规划是你的核心优势。你的挑战在于如何在严格执行计划的同时，保持对当下生活的享受。" },
+                drive: { name: "价值驱动的“创造者”", desc: "驱动你赚钱的核心动力，是实现自我价值、获得自由或照顾家人等深层需求。你的财富潜力，与你将这份动力转化为实际行动的能力息息相关。" },
+                selfworth: { name: "自我价值的“探索者”", desc: "你的财富状况与你的自我价值感紧密相连。你如何看待自己，直接影响了你吸引、接纳和持有财富的能力。解开自我价值的枷锁，是开启你财富之门的钥匙。" },
+                default: { name: "复合型的“财富炼金术士”", desc: "你的财富人格呈现出多种维度的复杂交织。这份报告将帮助你梳理这些线索，找到属于你的独特的财富增长之道。" }
+            };
+
+            const archetypeInfo = archetypes[primaryDimension] || archetypes.default;
+            document.getElementById('archetype-name').textContent = archetypeInfo.name;
+            document.getElementById('archetype-desc').textContent = archetypeInfo.desc;
+            
+            generateEnhancedRadarChart(dimensionScores);
+            generateGanttChart(dimensionScores);
+            generateDeepDimensionAnalysis(dimensionScores);
+            generateDeepApplicationGuide(dimensionScores);
+            generateClosingRemarks(userName, archetypeInfo);
+        }
+
+        function generateEnhancedRadarChart(dimensionScores) {
+            const container = document.getElementById('radar-container');
+            container.innerHTML = '<canvas id="radarChart"></canvas>';
+            const ctx = document.getElementById('radarChart').getContext('2d');
+
+            const dimensionData = Object.values(dimensionScores);
+            const labels = dimensionData.map(d => d.name);
+            const data = dimensionData.map(d => (d.score / d.total) * 100);
+            const colors = dimensionData.map(d => d.color);
+
+            const gradient = ctx.createLinearGradient(0, 0, 0, container.offsetHeight);
+            gradient.addColorStop(0, 'rgba(0, 91, 65, 0.5)');
+            gradient.addColorStop(1, 'rgba(78, 141, 124, 0.1)');
+
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '你的财富人格倾向',
+                        data: data,
+                        backgroundColor: gradient,
+                        borderColor: '#005B41',
+                        borderWidth: 3,
+                        pointBackgroundColor: colors,
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 6,
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: (context) => {
+                            return context.dataset.pointBackgroundColor[context.dataIndex];
+                        },
+                        pointHoverRadius: 8,
+                        pointHoverBorderWidth: 3,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: '#e4e9f2' },
+                            grid: { color: '#e4e9f2' },
+                            pointLabels: {
+                                font: { size: 14, weight: '600' },
+                                color: '#23302B',
+                                padding: 15
+                            },
+                            ticks: {
+                                backdropColor: 'rgba(255, 255, 255, 0.8)',
+                                color: '#a9a9a9',
+                                stepSize: 20
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                           display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(35, 48, 43, 0.9)',
+                            titleFont: { weight: 'bold', size: 14 },
+                            bodyFont: { size: 14 },
+                            padding: 12,
+                            cornerRadius: 8,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.r !== null) {
+                                        label += Math.round(context.parsed.r) + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function generateGanttChart(dimensionScores) {
+            const container = document.getElementById('gantt-container');
+            container.innerHTML = '';
+            Object.keys(dimensionScores).forEach(dim => {
+                const dimension = dimensionScores[dim];
+                const percentage = (dimension.score / dimension.total) * 100;
+                const item = document.createElement('div');
+                item.className = 'gantt-item';
+                item.innerHTML = `
+                    <div class="gantt-label">
+                        <span class="dimension-name">${dimension.name}</span>
+                        <span class="dimension-score">${dimension.score}/${dimension.total}</span>
+                    </div>
+                    <div class="gantt-bar-container">
+                        <div class="gantt-bar" style="width: 0%; background: ${dimension.color};">
+                            <span class="gantt-value">${Math.round(percentage)}%</span>
+                        </div>
+                    </div>`;
+                container.appendChild(item);
+                setTimeout(() => {
+                    item.querySelector('.gantt-bar').style.width = `${percentage}%`;
+                }, 100);
+            });
+        }
+
+        function generateDeepDimensionAnalysis(dimensionScores) {
+            const container = document.getElementById('dimensions-analysis');
+            container.innerHTML = '';
+            const analyses = {
+                beliefs: { name: "金钱信念：你的财富底层代码", highTitle: "限制性信念主导", highDesc: "你的财富“操作系统”中，可能安装了一些限制性的“程序”，如“金钱是匮乏的”、“追求财富是不好的”等。这些深层的信念会让你在面对财富机会时下意识地回避、恐惧或自我破坏。你可能因此错失机会，或在拥有财富后感到不安。", lowTitle: "富足性信念主导", lowDesc: "你的财富“操作系统”更为开放和积极。你倾向于将金钱视为一种中性的、创造价值的工具，并相信自己有能力、也值得拥有富足的生活。这种信念是你吸引和创造财富的坚实地基。", balance: "金钱本身没有好坏，是我们赋予了它意义。觉察并重塑你的金钱信念，如同升级你的财富操作系统，是提升财富能级的关键一步。" },
+                spending: { name: "消费习惯：你的价值观投票器", highTitle: "情绪化/冲动型消费", highDesc: "你的消费行为更多地受到情绪和即时欲望的驱动。你可能会通过购物来寻求安慰、奖励或填补空虚，但这往往导致财务混乱和事后的悔恨。你的每一次消费，都在为你想要的生活“投票”，但目前可能投给了“混乱”和“后悔”。", lowTitle: "价值导向型消费", lowDesc: "你的消费行为更多地基于理性的规划和内在的价值观。你清楚自己的财务状况，并倾向于为那些能带来长期价值和幸福感的东西买单。你的每一次消费，都在坚定地为你理想的生活“投票”。", balance: "学会区分“想要”和“需要”，让消费从无意识的情绪宣泄，转变为有意识的价值创造。你的钱，应该花在让你变得更好的地方。" },
+                risk: { name: "风险偏好：你的财富探索器", highTitle: "风险规避型（守护者）", highDesc: "你将财务安全放在首位，对不确定性和潜在的损失高度敏感。你更像一位“守护者”，擅长守住已有的财富。这种谨慎能帮你避免很多陷阱，但也可能让你因为过于保守而错失资产增值的机会，让财富“睡大觉”。", lowTitle: "风险偏好型（探索者）", lowDesc: "你将不确定性视为机遇，对高回报的潜力更感兴趣。你更像一位“探索者”，愿意为了更大的可能性而承担风险。这种魄力是你创造超额收益的引擎，但也可能让你因为冲动或准备不足而陷入不必要的风险之中。", balance: "风险和回报是财富硬币的两面。关键不在于完全规避或盲目追求，而在于建立一个符合你目标和承受能力的“风险管理系统”，让你的探索既勇敢又安全。" },
+                planning: { name: "储蓄与规划：你的未来财富蓝图", highTitle: "当下享乐导向", highDesc: "你更关注眼前的生活品质和即时满足，对未来的规划相对模糊或缺乏执行力。这让你拥有一个精彩的“现在”，但也可能以一个充满不确定性的“未来”为代价。你的财富故事，目前更像一部即兴的公路片。", lowTitle: "未来规划导向", lowDesc: "你拥有强大的“延迟满足”能力，愿意为了未来的财务安全和宏大目标而规划和储蓄。你像一位建筑师，为自己的财富大厦精心设计和施工。你的挑战在于，如何在建造未来的同时，也享受当下的风景。", balance: "健康的财务规划，是在“活在当下”和“未雨绸缪”之间找到动态平衡。让储蓄成为一种轻松的习惯，而非痛苦的牺牲，是通往财务自由的必经之路。" },
+                drive: { name: "赚钱动力：你的财富引擎", highTitle: "多元化/高强度动力", highDesc: "你拥有强大而多元的赚钱动力，无论是为了安全感、自由、成就感还是家庭责任。这台“大功率引擎”是你创造财富的核心驱动力。你需要注意的是，确保这台引擎有良好的保养（精力管理），并朝着你真正想要的方向前进。", lowTitle: "内在/稳定型动力", lowDesc: "你的赚钱动力更多地来自于内在的满足感（如热爱、稳定）而非外部的数字。你追求的是一种平衡、自洽的生活状态。这份从容是你的财富，但也可能让你在面对可以提升的机会时，缺乏一点“狼性”。", balance: "了解你赚钱的“为什么”，比知道“如何”赚钱更重要。当你将行动与你最深层的动力连接时，你的财富引擎才能发挥出最大的功率。" },
+                selfworth: { name: "财富与自我价值：你的财富容器", highTitle: "低价值感/财富上限", highDesc: "你的自我价值感与你的财务状况高度绑定，并且可能存在“我不配”或“我不值得”的内在声音。这会形成一个无形的“财富上限”，让你在接收金钱时感到不安，或在潜意识中阻碍自己获得更大的成功。你的财富“容器”可能太小了。", lowTitle: "高价值感/财富自信", lowDesc: "你拥有健康的自我价值体系，不将个人价值完全等同于财富水平。你相信自己值得拥有富足，并能坦然地接收和创造财富。你的财富“容器”是坚固而宽广的，为财富的流入做好了准备。", balance: "你的财富水平，永远不会超过你的自我价值水平。疗愈和提升你的自我价值感，就是在为你的人生打造一个更大、更坚固的“财富容器”。" }
+            };
+            Object.keys(dimensionScores).forEach(dim => {
+                const dimension = dimensionScores[dim];
+                const info = analyses[dim];
+                const isHigh = dimension.score > 5; // 超过一半就算高
+                const analysisBlock = document.createElement('div');
+                analysisBlock.className = 'insight-block';
+                analysisBlock.innerHTML = ` <div class="insight-title">${info.name}</div> <h3>${isHigh ? info.highTitle : info.lowTitle}</h3> <p>${isHigh ? info.highDesc : info.lowDesc}</p> <div class="action-item"> <strong>核心启示：</strong> ${info.balance} </div> `;
+                container.appendChild(analysisBlock);
+            });
+        }
+
+        function generateDeepApplicationGuide(dimensionScores) {
+            const container = document.getElementById('application-guide');
+            const scriptGuide = ` <div class="insight-block"> <div class="insight-title">第一章：重塑你的“金钱脚本”</div> <p>金钱脚本是我们从童年经历和成长环境中习得的、关于金钱的无意识信念。识别并重写它，是改变你财务命运的第一步。</p> <div class="scenario"> <div class="scenario-title">常见的三种限制性脚本</div> <ul> <li><strong>财富回避脚本 (Money Avoidance):</strong> 认为钱是坏的，富人是贪婪的，并下意识地回避财富。高“金钱信念”得分者常见。</li> <li><strong>财富崇拜脚本 (Money Worship):</strong> 认为更多的钱能解决一切问题，并带来无限的幸福。高“赚钱动力”和“财富与自我价值”得分者常见。</li> <li><strong>财富地位脚本 (Money Status):</strong> 认为财富是衡量成功的唯一标准，并倾向于通过消费来展示社会地位。高“消费习惯”得分者常见。</li> </ul> </div> <div class="action-item"> <strong>深度行动指南：</strong> <ol> <li><strong>金钱日志练习：</strong>连续一周，每当你要做出一项消费决策，或对金钱产生任何情绪时，记录下你脑海中冒出的第一个念头。例如：“这个太贵了，我不配用。”这就是你的金钱脚本在说话。</li> <li><strong>信念溯源与重塑：</strong>找到一个让你印象最深的脚本，问自己：“我第一次听到或感受到这个信念是在什么时候？从谁那里？” 然后，写下一条你更愿意相信的、更富足的新信念来替代它。例如，将“必须辛苦才能赚钱”重塑为“我可以轻松而丰盛地创造价值”。</li> </ol> </div> </div> `;
+            const spendingGuide = ` <div class="insight-block"> <div class="insight-title">第二章：优化你的“消费决策系统”</div> <p>理性的消费不是压抑欲望，而是让你的钱为你真正的人生目标服务。</p> <div class="scenario"> <div class="scenario-title">从“情绪买单”到“价值投资”</div> <ul> <li><strong>设立“消费冷静期”：</strong>对于所有非必需品，特别是超过一定金额的（如200元），把它加入购物车后，强制自己等待24-72小时。这能过滤掉90%的冲动消费。</li> <li><strong>创建“梦想基金”账户：</strong>为你真正渴望的东西（如一次旅行、一门课程）设立一个专门的储蓄账户，并给它命名。每当你抵制了一次冲动消费，就把省下的钱转入这个账户。让每一次“不买”都变成对梦想的“投资”。</li> </ul> </div> <div class="action-item"> <strong>深度行动指南：</strong> <ol> <li><strong>学习50/30/20预算法：</strong>将你税后收入的50%用于“必需品”（房租、交通、食物），30%用于“想要”（娱乐、购物、餐饮），20%用于“储蓄和投资”。这是一个简单而强大的预算框架。</li> <li><strong>“时薪”换算法：</strong>在购买一件昂贵的非必需品前，用它的价格除以你的时薪，问自己：“我愿意为它工作XX个小时吗？”这能让你更清醒地判断它的价值。</li> </ol> </div> </div> `;
+            const earningGuide = ` <div class="insight-block"> <div class="insight-title">第三章：激活你的“财富增长引擎”</div> <p>提升赚钱能力，始于提升你的自我价值感和对机会的敏锐度。</p> <div class="scenario"> <div class="scenario-title">从“我不配”到“我值得”</div> <ul> <li><strong>创建“成就档案”：</strong>准备一个文档或笔记本，记录下你所有的成就，无论大小——完成一个项目、获得一次赞美、学会一项新技能。当你感到自我怀疑时，就去阅读它。</li> <li><strong>练习“价值宣言”：</strong>每天早晨，对着镜子说一句肯定自己价值的话，例如：“我的知识和技能是宝贵的，我值得获得丰厚的回报。”</li> </ul> </div> <div class="action-item"> <strong>深度行动指南：</strong> <ol> <li><strong>进行“技能盘点”与“市场调研”：</strong>列出你最擅长的三项技能。然后去社交平台或招聘网站上搜索，看看具备这些技能的人都在通过什么方式变现。这能帮你发现被你忽略的搞钱机会。</li> <li><strong>开启“微副业”实验：</strong>选择一个你感兴趣的、启动成本最低的方向，给自己设定一个微小的目标（如“一个月内赚到第一笔100元”）。重点不是赚钱多少，而是通过行动打破“我不能”的魔咒，建立“我能”的自信。</li> </ol> </div> </div> `;
+            container.innerHTML = scriptGuide + spendingGuide + earningGuide;
+        }
+
+        function generateClosingRemarks(userName, archetypeInfo) {
+            const container = document.getElementById('closing-remarks');
+            const closingHTML = `
+                <div class="insight-block">
+                    <div class="insight-title">诊断总结：写给独一无二的你</div>
+                    <p>亲爱的<span class="user-name">${userName}</span>，</p>
+                    <p>感谢你勇敢地翻开了自己的“财富账本”，完成了这次深入的自我探索。这份报告，是你与金钱关系的一张高清CT片，它照亮了那些潜藏在水面之下的模式与信念。</p>
+                    <p>请记住，你的财富人格和金钱脚本没有好坏之分，它们都是你过往经历的忠实记录。它们曾在某个阶段保护过你，而现在，你拥有了重新选择和书写的力量。</p>
+                    <p>作为一名“<span class="user-name">${archetypeInfo.name}</span>”，你拥有着独特的财富潜力。你的谨慎、你的魄力、你的规划能力或是你的创造力，都是你未来财富之路上的宝贵资产。这份报告的目的，就是帮助你看清并善用它们。</p>
+                    <p>通往富足的旅程，始于内在的整合与疗愈。愿这份报告能成为你财富路上的一个智慧锦囊，在你感到迷茫时提供方向，在你感到怀疑时给予力量。愿你带着这份对自己更深的理解，自信而从容地，去创造你真正渴望的富足人生。</p>
+                    <p style="text-align: right; font-weight: bold; margin-top: 30px;">Roc心理</p>
+                </div>
+            `;
+            container.innerHTML = closingHTML;
+        }
+
+    </script>
+</body>
+</html>
